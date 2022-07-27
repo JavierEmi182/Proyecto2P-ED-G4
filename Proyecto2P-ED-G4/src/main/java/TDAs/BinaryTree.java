@@ -104,5 +104,32 @@ public class BinaryTree<E> {
         }
         return traversal;
     }
+    
+    //METODOS AGREGADOS
+    //devuelve las hojas desde el arbol o subarbol actual
+    public LinkedList<E> listaHojas(){
+        LinkedList<E> hojas = new LinkedList<>();
+        if(this.getRootContent()==null){
+            //lista vacia
+            return hojas;
+        }else{
+            //compruebo izquierda
+            if(this.getLeft().getRootContent()!=null){
+                this.getLeft().listaHojas();
+            }else{
+                //cuando este en hoja entro aqui
+                hojas.add(this.getRootContent());
+            }
+            //compruebo derecha
+            if(this.getRight().getRootContent()!=null){
+                this.getRight().listaHojas();
+            }else{
+                hojas.add(this.getRootContent());
+            }
+        }
+        
+        
+        return hojas;
+    }
 
 }
