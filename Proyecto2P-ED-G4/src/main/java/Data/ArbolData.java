@@ -19,6 +19,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
+import java.util.Stack;
 
 /**
  *
@@ -138,6 +139,35 @@ public class ArbolData {
        
         
         return q.poll();
+    }
+    
+    
+    //METODO PARA MOSTRAR ARBOL POR NIVEL
+    public static Map<Integer,LinkedList<String>> arbolPorNivel(BinaryTree<String> arbol, ArrayList<String> orden){
+        Map<Integer,LinkedList<String>> tabla = new LinkedHashMap<>();
+        Stack<BinaryTree<String>> s = new Stack<>();
+        s.push(arbol);
+        
+        while (!s.isEmpty()) {
+            BinaryTree<String> tree = s.pop();
+            if (!tree.isEmpty()) {
+                //traversal.add(tree.getRootContent());
+                if(tabla.containsKey(orden.indexOf(tree.getRootContent()))){
+                    tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
+                }else{
+                tabla.putIfAbsent(orden.indexOf(tree.getRootContent()), new LinkedList<String>());
+                tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
+                }
+            }
+            if (tree.getRight()!= null && !tree.getRight().isEmpty()) {
+                s.push(tree.getRight());
+            }
+            if (tree.getLeft() != null && !tree.getLeft().isEmpty()) {
+                s.push(tree.getLeft());
+            }
+        }
+        
+        return tabla;
     }
     
 }
