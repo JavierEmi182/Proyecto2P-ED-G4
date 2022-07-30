@@ -166,8 +166,8 @@ public class ArbolData {
     
     
     //METODO PARA MOSTRAR ARBOL POR NIVEL
-    public static Map<Integer,LinkedList<String>> arbolPorNivel(BinaryTree<String> arbol, ArrayList<String> orden){
-        Map<Integer,LinkedList<String>> tabla = new LinkedHashMap<>();
+    public static Map<Integer,ArrayList<String>> arbolPorNivel(BinaryTree<String> arbol, ArrayList<String> orden,ArrayList<String> respuestas){
+        Map<Integer,ArrayList<String>> tabla = new LinkedHashMap<>();
         Stack<BinaryTree<String>> s = new Stack<>();
         s.push(arbol);
         
@@ -178,7 +178,7 @@ public class ArbolData {
                 if(tabla.containsKey(orden.indexOf(tree.getRootContent()))){
                     tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
                 }else{
-                tabla.putIfAbsent(orden.indexOf(tree.getRootContent()), new LinkedList<String>());
+                tabla.putIfAbsent(orden.indexOf(tree.getRootContent()), new ArrayList<String>());
                 tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
                 }
             }
@@ -189,8 +189,43 @@ public class ArbolData {
                 s.push(tree.getLeft());
             }
         }
+        tabla.put(orden.size(), respuestas);
         
         return tabla;
     }
+    
+    public static BinaryTree<String> enlazarRespuestas(BinaryTree<String> preguntas,ArrayList<String> respuestas){
+        BinaryTree<String> arbol=preguntas;
+        BinaryTree<String> navegar=preguntas;
+        for(String linea:respuestas){
+            //System.out.println("linea: "+linea);
+            navegar=preguntas;
+            String[] split=linea.split(";");
+            String animal=split[0];
+            for(int i=1;i<split.length-1;i++){
+                //System.out.println(i);
+                if(split[i].equals("SI")){
+                    //System.out.println("navegar antes de si: "+navegar.getRootContent());
+                    navegar=navegar.getLeft();
+                    //System.out.println("navegar despues de si: "+navegar.getRootContent());
+                }else{
+                    //System.out.println("navegar antes de no: "+navegar.getRootContent());
+                    navegar=navegar.getRight();
+                    //System.out.println("navegar despues de no: "+navegar.getRootContent());
+                }
+            }
+            if(split[split.length-1].equals("SI")){
+                //System.out.println("Editando si: "+navegar.getRootContent()+" con: "+animal);
+                navegar.setLeft(new BinaryTree<String>(animal));
+            }else{
+                //System.out.println("Editando no: "+navegar.getRootContent()+" con: "+animal);
+                navegar.setRight(new BinaryTree<String>(animal));
+            }
+            
+        }
+        
+        return arbol;
+    }
+    
     
 }
