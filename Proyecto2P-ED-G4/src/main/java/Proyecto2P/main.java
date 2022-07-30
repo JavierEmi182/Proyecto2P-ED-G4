@@ -6,8 +6,10 @@
 package Proyecto2P;
 
 import static Data.ArbolData.arbolPorNivel;
+import static Data.ArbolData.enlazarArbolesPreguntas;
 import TDAs.BinaryTree;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
@@ -28,8 +30,28 @@ public class main {
         orden.add("¿Es este animal un mamífero?");
         orden.add("¿Es este animal un carnívoro?");
         orden.add("¿Se para este animal sobre cuatro patas?");
+        //System.out.println(orden);
         
+        BinaryTree<String> arbolPreguntas= enlazarArbolesPreguntas(orden);
+        //ArrayList<String> reverse = orden;
+        //Collections.reverse(reverse);
+        Map<Integer,LinkedList<String>> tabla = arbolPorNivel(arbolPreguntas,orden);
+        //System.out.println(tabla);
+        System.out.println("Nivel 0: "+tabla.get(0));
+        System.out.println("Nivel 1: "+tabla.get(1));
+        System.out.println("Nivel 2: "+tabla.get(2));
         
+        System.out.println("//////");
+        //System.out.println(arbolPreguntas);
+        System.out.println("0.Root: " +arbolPreguntas.getRootContent());
+        System.out.println("1.1.Root izquierdo: "+arbolPreguntas.getLeft().getRootContent());
+        System.out.println("1.2.Root derecho: "+arbolPreguntas.getRight().getRootContent());
+        System.out.println("2.1."+arbolPreguntas.getLeft().getLeft().getRootContent());
+        System.out.println("2.2."+arbolPreguntas.getLeft().getRight().getRootContent());
+        System.out.println("2.3."+arbolPreguntas.getRight().getLeft().getRootContent());
+        System.out.println("2.4."+arbolPreguntas.getRight().getRight().getRootContent());
+        
+        /*
         BinaryTree<String> arbol=new BinaryTree<>("¿Es este animal un mamífero?");
         arbol.setLeft(new BinaryTree<>("¿Es este animal un carnívoro?"));
         arbol.setRight(new BinaryTree<>("¿Es este animal un carnívoro?"));
@@ -95,7 +117,7 @@ public class main {
                 System.out.println("Estas pensando en un "+arbolActual.getRootContent()+"!");
                 break;
             }
-        }
+        }*/
     }
     
 }

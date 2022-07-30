@@ -68,30 +68,53 @@ public class ArbolData {
     public static BinaryTree<String> enlazarArbolesPreguntas(ArrayList<String> preguntas){
         //INTENTO CON QUEUE
         //LLENO LA COLA
-        ArrayList<String> reverse= preguntas;
-        Collections.reverse(reverse);
+        ArrayList<String> orden=preguntas;
+        ArrayList<String> modificado=preguntas;
+        ArrayList<String> reverse= new ArrayList<>(modificado);
+        
+        Collections.reverse(reverse);       
+        //Collections.reverse(orden);
+
         Queue<BinaryTree<String>> q= new ArrayDeque<>();
-        int nv=preguntas.size()-1;
+        int nv=orden.size()-1;
         for(String p:reverse){
-            int i=preguntas.indexOf(p)*2;
+            /*System.out.println("orden: "+orden);
+            System.out.println("p: "+p);
+            System.out.println("index de p: "+orden.indexOf(p));
+            System.out.println(2^2);*/
+            //int i=(2^(orden.indexOf(p)))+1;
+            int i=(int)Math.pow(2, orden.indexOf(p));
+            //System.out.println(i);
             while(i>0){
                 q.offer(new BinaryTree<String>(p));
                 i--;
             }
             //PARA EL ULTIMO INDICE
-            if(preguntas.indexOf(p)==0){
+            if(orden.indexOf(p)==0){
                 q.offer(new BinaryTree<String>(p));
             }
             //PARAR EN EL LA PRIMERA PREGUNTA (ULTIMA INVERTIDA)
             break;
         }
+        //System.out.println(q.peek().getRootContent());
         int cont=nv;
+        //q.clear();
+        //System.out.println(q.size());
+        //System.out.println(q.peek().getRootContent());
         while(q.size()>1){
-            
+            //q.poll();
+            //System.out.println("Entre while");
             if(cont!=0){
                 BinaryTree<String> t0=q.poll();
+                //System.out.println("hijo izquierdo: "+t0.getRootContent());
                 BinaryTree<String> t1=q.poll();
-                BinaryTree<String> padre= new BinaryTree<>(preguntas.get(nv-1)); //el padre
+                //System.out.println("hijo derecho: "+t1.getRootContent());
+                //System.out.println("numero: "+(nv-1));
+                //System.out.println(preguntas);
+                //System.out.println(reverse);
+                //System.out.println(orden);
+                BinaryTree<String> padre= new BinaryTree<>(orden.get(nv-1));
+                //System.out.println("Padre: "+padre.getRootContent());//el padre
                 padre.setLeft(t0);
                 padre.setRight(t1);
                 q.offer(padre);
