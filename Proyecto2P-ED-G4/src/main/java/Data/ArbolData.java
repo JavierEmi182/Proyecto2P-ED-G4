@@ -227,5 +227,8 @@ public class ArbolData {
         return arbol;
     }
     
-    
+    public static boolean esPregunta(String s){        
+        return s.startsWith("¿") && s.endsWith("?");
+    }
+
 }
