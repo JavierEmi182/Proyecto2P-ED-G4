@@ -56,12 +56,12 @@ public class main {
         ArrayList<String> respuestas=new ArrayList<>();
         
         respuestas.add("Oso;SI;SI;SI");
-        respuestas.add("Desconocido;SI;SI;NO");
+//        respuestas.add("Desconocido;SI;SI;NO");
         respuestas.add("Venado;SI;NO;SI");
-        respuestas.add("Desconocido;SI;NO;NO");
-        respuestas.add("Desconocido;NO;SI;SI");
+//        respuestas.add("Desconocido;SI;NO;NO");
+//        respuestas.add("Desconocido;NO;SI;SI");
         respuestas.add("Lechuza;NO;SI;NO");
-        respuestas.add("Desconocido;NO;NO;SI");
+//        respuestas.add("Desconocido;NO;NO;SI");
         respuestas.add("Paloma;NO;NO;NO");
         
         BinaryTree<String> arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);
@@ -145,18 +145,22 @@ public class main {
                 resp1=sc.nextLine().toUpperCase();
                 if(resp1.equals("SI")){
                     arbolActual=arbolActual.getLeft();
-                
-                }else if(resp1.equals("NO")){
-                    arbolActual=arbolActual.getRight();
-                }
-            }else{
-                if(arbolActual.getRootContent().equals("Desconocido")){
+                    if(arbolActual==null){
                     System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripccion");
                     break;
-                }else{
-                    System.out.println("Estas pensando en un "+arbolActual.getRootContent()+"!");
+                    }
+                }else if(resp1.equals("NO")){
+                    arbolActual=arbolActual.getRight();
+                    if(arbolActual==null){
+                    System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripccion");
                     break;
+                    }
                 }
+            }else{
+
+                System.out.println("Estas pensando en un "+arbolActual.getRootContent()+"!");
+                break;
+
             }
         }
     }
