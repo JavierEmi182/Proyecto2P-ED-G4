@@ -5,6 +5,7 @@
  */
 package Proyecto2P;
 
+import Data.ArbolData;
 import static Data.ArbolData.arbolPorNivel;
 import static Data.ArbolData.enlazarArbolesPreguntas;
 import static Data.ArbolData.enlazarRespuestas;
@@ -139,7 +140,7 @@ public class main {
         String resp1="";
         //while(!resp1.equals("SI")||!resp1.equals("NO")){
         while(arbolActual.getRootContent()!=null){
-            if(arbolActual.getRootContent().startsWith("¿")){
+            if(ArbolData.esPregunta( arbolActual.getRootContent() ) ){
                 System.out.println(arbolActual.getRootContent());
                 resp1=sc.nextLine().toUpperCase();
                 if(resp1.equals("SI")){
