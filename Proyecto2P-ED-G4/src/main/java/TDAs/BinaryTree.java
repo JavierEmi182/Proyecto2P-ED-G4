@@ -1,5 +1,6 @@
 package TDAs;
 
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -130,6 +131,27 @@ public class BinaryTree<E> {
         
         
         return hojas;
+    }
+    
+    
+    public boolean recursiveSearch(E content, Comparator<E> cmp) {
+
+        boolean result =false;
+        if (!this.isEmpty()) {
+            if (cmp.compare(content, this.getRootContent()) == 0) {
+                return true;
+            } else {
+
+                if (this.getLeft() != null) {
+                    result = result || this.getLeft().recursiveSearch(content, cmp);
+                }
+
+                if (this.getRight() != null) {
+                    result = result || this.getRight().recursiveSearch(content, cmp);
+                }
+            }
+        }
+        return result;
     }
 
 }
