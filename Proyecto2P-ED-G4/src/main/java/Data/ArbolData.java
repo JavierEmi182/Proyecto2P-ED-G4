@@ -201,7 +201,7 @@ public class ArbolData {
         for(String linea:respuestas){
             //System.out.println("linea: "+linea);
             navegar=preguntas;
-            String[] split=linea.split(";");
+            String[] split=linea.split(" ");
             String animal=split[0];
             for(int i=1;i<split.length-1;i++){
                 //System.out.println(i);

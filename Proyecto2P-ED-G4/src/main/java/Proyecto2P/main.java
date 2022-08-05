@@ -10,6 +10,7 @@ import static Data.ArbolData.arbolPorNivel;
 import static Data.ArbolData.enlazarArbolesPreguntas;
 import static Data.ArbolData.enlazarRespuestas;
 import static Data.PreguntasData.leerPreguntas;
+import static Data.RespuestasData.leerRespuestas;
 import TDAs.BinaryTree;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -57,8 +58,11 @@ public class main {
         System.out.println("2.3."+arbolPreguntas.getRight().getLeft().getRootContent());
         System.out.println("2.4."+arbolPreguntas.getRight().getRight().getRootContent());*/
         
-        ArrayList<String> respuestas = new ArrayList<>();
+       String rutaRespuestas = "recursos/Respuestas.txt";
+        ArrayList<String> respuestas = leerRespuestas(rutaRespuestas);
         
+        
+       /* ArrayList<String> respuestas = new ArrayList<>();
         respuestas.add("Oso;SI;SI;SI");
 //        respuestas.add("Desconocido;SI;SI;NO");
         respuestas.add("Venado;SI;NO;SI");
@@ -66,7 +70,7 @@ public class main {
 //        respuestas.add("Desconocido;NO;SI;SI");
         respuestas.add("Lechuza;NO;SI;NO");
 //        respuestas.add("Desconocido;NO;NO;SI");
-        respuestas.add("Paloma;NO;NO;NO");
+        respuestas.add("Paloma;NO;NO;NO");*/
         
         BinaryTree<String> arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);
         /*System.out.println("PRUEBA RESPUESTAS");
