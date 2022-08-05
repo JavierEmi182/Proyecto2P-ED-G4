@@ -28,7 +28,7 @@ import java.util.Stack;
 public class ArbolData {
     
     //METODOS PARA LEER E INICIALIZAR ARBOLES
-    public ArrayList<String> leerArbolesPregunta(String ruta) throws IOException{
+    /*public ArrayList<String> leerArbolesPregunta(String ruta) throws IOException{
         ArrayList<String> preguntas=new ArrayList<>();
         //Map<Integer,BinaryTree<String>> tabla = new LinkedHashMap<>();
         
@@ -38,9 +38,9 @@ public class ArbolData {
                                     new InputStreamReader(input,"UTF-8"))){
             //GENERA EL URL RELATIVO AL ARCHIVO QUE VAMOS A LEER
            
-            /*URL u = App.class.getResource(ruta);
-            File file = new File(u.toURI());
-            try(BufferedReader bf = new BufferedReader(new FileReader(file))){*/
+            //URL u = App.class.getResource(ruta);
+            //File file = new File(u.toURI());
+            //try(BufferedReader bf = new BufferedReader(new FileReader(file))){
                 String linea;
                 int nivel=0;
                 //leemos linea a linea hasta llegar la final del archivo
@@ -63,7 +63,7 @@ public class ArbolData {
                 
         
         return preguntas;   
-    }
+    }*/
     
     public static BinaryTree<String> enlazarArbolesPreguntas(ArrayList<String> preguntas){
         //INTENTO CON QUEUE
@@ -74,8 +74,9 @@ public class ArbolData {
         
         Collections.reverse(reverse);       
         //Collections.reverse(orden);
-
+        
         Queue<BinaryTree<String>> q= new ArrayDeque<>();
+        if(preguntas.size() <= 20){  
         int nv=orden.size()-1;
         for(String p:reverse){
             /*System.out.println("orden: "+orden);
@@ -159,7 +160,7 @@ public class ArbolData {
         
         //}*/
        
-       
+       }
         
         return q.poll();
     }
@@ -229,6 +230,11 @@ public class ArbolData {
     
     public static boolean esPregunta(String s){        
         return s.startsWith("¿") && s.endsWith("?");
+    }
+    
+    
+    public void getLeaf(){
+        
     }
 
 }

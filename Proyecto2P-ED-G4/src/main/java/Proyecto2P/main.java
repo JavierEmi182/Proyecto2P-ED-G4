@@ -9,7 +9,9 @@ import Data.ArbolData;
 import static Data.ArbolData.arbolPorNivel;
 import static Data.ArbolData.enlazarArbolesPreguntas;
 import static Data.ArbolData.enlazarRespuestas;
+import static Data.PreguntasData.leerPreguntas;
 import TDAs.BinaryTree;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -24,15 +26,17 @@ public class main {
     private static Scanner sc;
     private static BinaryTree<String> arbolActual;
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         sc= new Scanner(System.in);
         
+        String ruta = "recursos/Preguntas.txt";
+        ArrayList<String> orden = leerPreguntas(ruta);
         
-        ArrayList<String> orden=new ArrayList<>();
+        /*ArrayList<String> orden=new ArrayList<>();
         orden.add("¿Es este animal un mamífero?");
         orden.add("¿Es este animal un carnívoro?");
         orden.add("¿Se para este animal sobre cuatro patas?");
-        //System.out.println(orden);
+        //System.out.println(orden);*/
         
         BinaryTree<String> arbolPreguntas= enlazarArbolesPreguntas(orden);
         //ArrayList<String> reverse = orden;
@@ -43,8 +47,8 @@ public class main {
         //System.out.println("Nivel 1: "+tabla.get(1));
         //System.out.println("Nivel 2: "+tabla.get(2));
         
-        /*System.out.println("//////");
-        //System.out.println(arbolPreguntas);
+       /* System.out.println("//////");
+        System.out.println(arbolPreguntas);
         System.out.println("0.Root: " +arbolPreguntas.getRootContent());
         System.out.println("1.1.Root izquierdo: "+arbolPreguntas.getLeft().getRootContent());
         System.out.println("1.2.Root derecho: "+arbolPreguntas.getRight().getRootContent());
@@ -53,7 +57,7 @@ public class main {
         System.out.println("2.3."+arbolPreguntas.getRight().getLeft().getRootContent());
         System.out.println("2.4."+arbolPreguntas.getRight().getRight().getRootContent());*/
         
-        ArrayList<String> respuestas=new ArrayList<>();
+        ArrayList<String> respuestas = new ArrayList<>();
         
         respuestas.add("Oso;SI;SI;SI");
 //        respuestas.add("Desconocido;SI;SI;NO");
