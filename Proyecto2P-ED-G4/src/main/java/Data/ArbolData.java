@@ -27,43 +27,6 @@ import java.util.Stack;
  */
 public class ArbolData {
     
-    //METODOS PARA LEER E INICIALIZAR ARBOLES
-    /*public ArrayList<String> leerArbolesPregunta(String ruta) throws IOException{
-        ArrayList<String> preguntas=new ArrayList<>();
-        //Map<Integer,BinaryTree<String>> tabla = new LinkedHashMap<>();
-        
-        try(InputStream input = new URL("file:"+ruta).openStream();
-                
-                BufferedReader bf = new BufferedReader(
-                                    new InputStreamReader(input,"UTF-8"))){
-            //GENERA EL URL RELATIVO AL ARCHIVO QUE VAMOS A LEER
-           
-            //URL u = App.class.getResource(ruta);
-            //File file = new File(u.toURI());
-            //try(BufferedReader bf = new BufferedReader(new FileReader(file))){
-                String linea;
-                int nivel=0;
-                //leemos linea a linea hasta llegar la final del archivo
-                while( (linea=bf.readLine())!=null ){
-                    //BinaryTree<String> t=new BinaryTree<>(linea);
-                    preguntas.add(linea);
-
-                    }
-                //System.out.println(fotos);
-                //System.out.println("Termine el archivo");
-            } catch (FileNotFoundException ex) {
-                //System.out.println("No se encontro archivo");
-                System.out.println(ex.getMessage());
-                throw ex;
-            } catch (IOException ex) {
-               // System.out.println("Paso algo al leer archivo");
-                System.out.println(ex.getMessage());
-                throw ex;
-            } 
-                
-        
-        return preguntas;   
-    }*/
     
     public static BinaryTree<String> enlazarArbolesPreguntas(ArrayList<String> preguntas){
         //INTENTO CON QUEUE
@@ -97,7 +60,7 @@ public class ArbolData {
             break;
         }
         //System.out.println(q.peek().getRootContent());
-        int cont=nv;
+        int cont = orden.size();
         //q.clear();
         //System.out.println(q.size());
         //System.out.println(q.peek().getRootContent());
