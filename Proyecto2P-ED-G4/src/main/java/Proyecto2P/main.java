@@ -40,6 +40,7 @@ public class main {
         //System.out.println(orden);*/
         
         BinaryTree<String> arbolPreguntas= enlazarArbolesPreguntas(orden);
+        
         //ArrayList<String> reverse = orden;
         //Collections.reverse(reverse);
         //Map<Integer,ArrayList<String>> tabla = arbolPorNivel(arbolPreguntas,orden,respuestas);
@@ -60,8 +61,7 @@ public class main {
         
        String rutaRespuestas = "recursos/Respuestas.txt";
         ArrayList<String> respuestas = leerRespuestas(rutaRespuestas);
-        
-        
+            
        /* ArrayList<String> respuestas = new ArrayList<>();
         respuestas.add("Oso;SI;SI;SI");
 //        respuestas.add("Desconocido;SI;SI;NO");
@@ -95,7 +95,9 @@ public class main {
         System.out.println("Nivel 1: "+tabla.get(1));
         System.out.println("Nivel 2: "+tabla.get(2));
         System.out.println("Nivel 3: "+tabla.get(3));
-        
+        System.out.println("Nivel 4: "+tabla.get(4));
+       
+       
        /* BinaryTree<String> arbol=new BinaryTree<>("¿Es este animal un mamífero?");
         arbol.setLeft(new BinaryTree<>("¿Es este animal un carnívoro?"));
         arbol.setRight(new BinaryTree<>("¿Es este animal un carnívoro?"));
@@ -114,11 +116,6 @@ public class main {
         arbol.getLeft().getLeft().setRight(new BinaryTree<>("Desconocido"));
         arbol.getLeft().getLeft().setLeft(new BinaryTree<>("Oso"));
         */
-        
-        
-        
-        
-        
         
         /*System.out.println("Arbol que usaremos: ");
         //LinkedList<String> respuestas=new LinkedList<>();
@@ -148,27 +145,25 @@ public class main {
         String resp1="";
         //while(!resp1.equals("SI")||!resp1.equals("NO")){
         while(arbolActual.getRootContent()!=null){
-            if(ArbolData.esPregunta( arbolActual.getRootContent() ) ){
-                System.out.println(arbolActual.getRootContent());
+            if(ArbolData.esPregunta(arbolActual.getRootContent())){
+                System.out.println("*"+arbolActual.getRootContent());
                 resp1=sc.nextLine().toUpperCase();
                 if(resp1.equals("SI")){
                     arbolActual=arbolActual.getLeft();
                     if(arbolActual==null){
-                    System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripccion");
-                    break;
+                        System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+                        break;
                     }
                 }else if(resp1.equals("NO")){
                     arbolActual=arbolActual.getRight();
                     if(arbolActual==null){
-                    System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripccion");
-                    break;
+                        System.out.println("Lo sentimos, pero no tenemos un animal que cumpla esa descripcion");
+                        break;
                     }
                 }
             }else{
-
                 System.out.println("Estas pensando en un "+arbolActual.getRootContent()+"!");
                 break;
-
             }
         }
     }

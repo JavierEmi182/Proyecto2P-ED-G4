@@ -28,38 +28,31 @@ import java.util.Stack;
 public class ArbolData {
     
     
-    public static BinaryTree<String> enlazarArbolesPreguntas(ArrayList<String> preguntas){
+    public static BinaryTree<String> enlazarArbolesPreguntas(ArrayList<String> orden){
         //INTENTO CON QUEUE
         //LLENO LA COLA
-        ArrayList<String> orden=preguntas;
-        ArrayList<String> modificado=preguntas;
-        ArrayList<String> reverse= new ArrayList<>(modificado);
+        ArrayList<String> reverse = new ArrayList<>(orden);     
+        Collections.reverse(reverse);
         
-        Collections.reverse(reverse);       
+        Queue<BinaryTree<String>> q = new ArrayDeque<>(); 
         
-        Queue<BinaryTree<String>> q= new ArrayDeque<>(); 
-        int nv=orden.size()-1;
         for(String p:reverse){
-            /*System.out.println("orden: "+orden);
-            System.out.println("p: "+p);
-            System.out.println("index de p: "+orden.indexOf(p));
-            System.out.println(2^2);*/
-            //int i=(2^(orden.indexOf(p)))+1;
             int i=(int)Math.pow(2, orden.indexOf(p));
             //System.out.println(i);
             while(i>0){
-                q.offer(new BinaryTree<String>(p));
+                q.offer(new BinaryTree<>(p));
                 i--;
             }
             //PARA EL ULTIMO INDICE
-            if(orden.indexOf(p)==0){
-                q.offer(new BinaryTree<String>(p));
+            if(orden.indexOf(p)== 0){
+                q.offer(new BinaryTree<>(p));
             }
             //PARAR EN EL LA PRIMERA PREGUNTA (ULTIMA INVERTIDA)
             break;
         }
         //System.out.println(q.peek().getRootContent());
-        int cont = orden.size();
+        int nv = orden.size()-1;
+        int cont = q.size()/2;
         //q.clear();
         //System.out.println(q.size());
         //System.out.println(q.peek().getRootContent());
@@ -67,61 +60,20 @@ public class ArbolData {
             //q.poll();
             //System.out.println("Entre while");
             if(cont!=0){
-                BinaryTree<String> t0=q.poll();
-                //System.out.println("hijo izquierdo: "+t0.getRootContent());
-                BinaryTree<String> t1=q.poll();
-                //System.out.println("hijo derecho: "+t1.getRootContent());
-                //System.out.println("numero: "+(nv-1));
-                //System.out.println(preguntas);
-                //System.out.println(reverse);
-                //System.out.println(orden);
-                BinaryTree<String> padre= new BinaryTree<>(orden.get(nv-1));
-                //System.out.println("Padre: "+padre.getRootContent());//el padre
-                padre.setLeft(t0);
-                padre.setRight(t1);
-                q.offer(padre);
+                BinaryTree<String> left = q.poll();
+                //System.out.println("hijo izquierdo: "+left.getRootContent());
+                BinaryTree<String> right = q.poll();
+                //System.out.println("hijo derecho: "+right.getRootContent());
+                BinaryTree<String> root= new BinaryTree<>(orden.get(nv-1));
+                root.setLeft(left);
+                root.setRight(right);
+                q.offer(root);
                 cont--;
             }else{
                 nv--;
-                cont=nv;
+                cont = q.size()/2;
             }
-        }
-        
-        
-        
-        
-        
-        //BinaryTree<String> arbol=new BinaryTree<String>();
-        //int nv=preguntas.size();
-        //INICIALIZO EL NIVEL 0
-       /* if(preguntas.size()>1){
-            //ASUMIMOS QUE EL ARGUMENTO RAIZ QUE INGRESO CONTIENE EL NIVEL 0
-            preguntas.remove(0);
-            
-            BinaryTree<String> tree = preguntas.get(0);
-            preguntas.remove(0);
-            //el nuevo indice 0
-            ///
-            raiz.setLeft(tree);
-            raiz.setRight(tree);
-            
-            ////
-            raiz.setLeft(preguntas.get(0));
-            raiz.setRight(preguntas.get(0));
-            enlazarArbolesPreguntas(preguntas,raiz.getLeft());
-            enlazarArbolesPreguntas(preguntas,raiz.getRight());
-        }else{
-            //CUANDO ESTA EN LA ULTIMA PREGUNTA
-            raiz.setLeft(preguntas.get(0));
-            raiz.setRight(preguntas.get(0));
-        }
-        
-        //while(nv>0){
-        
-        
-        //}*/
-       
-       
+        }  
         
         return q.poll();
     }
@@ -140,8 +92,8 @@ public class ArbolData {
                 if(tabla.containsKey(orden.indexOf(tree.getRootContent()))){
                     tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
                 }else{
-                tabla.putIfAbsent(orden.indexOf(tree.getRootContent()), new ArrayList<String>());
-                tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
+                    tabla.putIfAbsent(orden.indexOf(tree.getRootContent()), new ArrayList<String>());
+                    tabla.get(orden.indexOf(tree.getRootContent())).add(tree.getRootContent());
                 }
             }
             if (tree.getRight()!= null && !tree.getRight().isEmpty()) {
@@ -182,8 +134,7 @@ public class ArbolData {
             }else{
                 //System.out.println("Editando no: "+navegar.getRootContent()+" con: "+animal);
                 navegar.setRight(new BinaryTree<String>(animal));
-            }
-            
+            }     
         }
         
         return arbol;
@@ -191,11 +142,6 @@ public class ArbolData {
     
     public static boolean esPregunta(String s){        
         return s.startsWith("¿") && s.endsWith("?");
-    }
-    
-    
-    public void getLeaf(){
-        
     }
 
 }
