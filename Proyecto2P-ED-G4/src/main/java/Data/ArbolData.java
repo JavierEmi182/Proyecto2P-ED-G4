@@ -59,7 +59,7 @@ public class ArbolData {
             break;
         }
         //System.out.println(q.peek().getRootContent());
-        int cont = nv+1;
+        int cont = orden.size();
         //q.clear();
         //System.out.println(q.size());
         //System.out.println(q.peek().getRootContent());
