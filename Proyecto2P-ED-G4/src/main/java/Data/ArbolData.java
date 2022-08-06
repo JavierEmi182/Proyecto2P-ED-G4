@@ -36,7 +36,6 @@ public class ArbolData {
         ArrayList<String> reverse= new ArrayList<>(modificado);
         
         Collections.reverse(reverse);       
-        //Collections.reverse(orden);
         
         Queue<BinaryTree<String>> q= new ArrayDeque<>(); 
         int nv=orden.size()-1;
@@ -60,7 +59,7 @@ public class ArbolData {
             break;
         }
         //System.out.println(q.peek().getRootContent());
-        int cont = orden.size();
+        int cont = nv+1;
         //q.clear();
         //System.out.println(q.size());
         //System.out.println(q.peek().getRootContent());
