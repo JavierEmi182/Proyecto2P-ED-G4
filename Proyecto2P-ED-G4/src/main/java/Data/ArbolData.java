@@ -75,8 +75,7 @@ public class ArbolData {
         Collections.reverse(reverse);       
         //Collections.reverse(orden);
         
-        Queue<BinaryTree<String>> q= new ArrayDeque<>();
-        if(preguntas.size() <= 20){  
+        Queue<BinaryTree<String>> q= new ArrayDeque<>(); 
         int nv=orden.size()-1;
         for(String p:reverse){
             /*System.out.println("orden: "+orden);
@@ -160,7 +159,7 @@ public class ArbolData {
         
         //}*/
        
-       }
+       
         
         return q.poll();
     }
