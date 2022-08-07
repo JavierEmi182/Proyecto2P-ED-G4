@@ -18,6 +18,8 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -31,119 +33,25 @@ public class main {
         sc= new Scanner(System.in);
         
         String ruta = "recursos/Preguntas.txt";
+        //array preguntas
         ArrayList<String> orden = leerPreguntas(ruta);
         
-        /*ArrayList<String> orden=new ArrayList<>();
-        orden.add("¿Es este animal un mamífero?");
-        orden.add("¿Es este animal un carnívoro?");
-        orden.add("¿Se para este animal sobre cuatro patas?");
-        //System.out.println(orden);*/
         
         BinaryTree<String> arbolPreguntas= enlazarArbolesPreguntas(orden);
         
-        //ArrayList<String> reverse = orden;
-        //Collections.reverse(reverse);
-        //Map<Integer,ArrayList<String>> tabla = arbolPorNivel(arbolPreguntas,orden,respuestas);
-        //System.out.println(tabla);
-        //System.out.println("Nivel 0: "+tabla.get(0));
-        //System.out.println("Nivel 1: "+tabla.get(1));
-        //System.out.println("Nivel 2: "+tabla.get(2));
-        
-       /* System.out.println("//////");
-        System.out.println(arbolPreguntas);
-        System.out.println("0.Root: " +arbolPreguntas.getRootContent());
-        System.out.println("1.1.Root izquierdo: "+arbolPreguntas.getLeft().getRootContent());
-        System.out.println("1.2.Root derecho: "+arbolPreguntas.getRight().getRootContent());
-        System.out.println("2.1."+arbolPreguntas.getLeft().getLeft().getRootContent());
-        System.out.println("2.2."+arbolPreguntas.getLeft().getRight().getRootContent());
-        System.out.println("2.3."+arbolPreguntas.getRight().getLeft().getRootContent());
-        System.out.println("2.4."+arbolPreguntas.getRight().getRight().getRootContent());*/
-        
        String rutaRespuestas = "recursos/Respuestas.txt";
-        ArrayList<String> respuestas = leerRespuestas(rutaRespuestas);
-            
-       /* ArrayList<String> respuestas = new ArrayList<>();
-        respuestas.add("Oso;SI;SI;SI");
-//        respuestas.add("Desconocido;SI;SI;NO");
-        respuestas.add("Venado;SI;NO;SI");
-//        respuestas.add("Desconocido;SI;NO;NO");
-//        respuestas.add("Desconocido;NO;SI;SI");
-        respuestas.add("Lechuza;NO;SI;NO");
-//        respuestas.add("Desconocido;NO;NO;SI");
-        respuestas.add("Paloma;NO;NO;NO");*/
+       //array respuestas
+        ArrayList<String> respuestas = leerRespuestas(rutaRespuestas);          
         
-        BinaryTree<String> arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);
-        /*System.out.println("PRUEBA RESPUESTAS");
-        System.out.println("0.Root: " +arbolFinal.getRootContent());
-        System.out.println("1.1.Root izquierdo: "+arbolFinal.getLeft().getRootContent());
-        System.out.println("1.2.Root derecho: "+arbolFinal.getRight().getRootContent());
-        System.out.println("2.1."+arbolFinal.getLeft().getLeft().getRootContent());
-        System.out.println("2.2."+arbolFinal.getLeft().getRight().getRootContent());
-        System.out.println("2.3."+arbolFinal.getRight().getLeft().getRootContent());
-        System.out.println("2.4."+arbolFinal.getRight().getRight().getRootContent());
-        System.out.println("3.1."+arbolFinal.getLeft().getLeft().getLeft().getRootContent());
-        System.out.println("3.2."+arbolFinal.getLeft().getLeft().getRight().getRootContent());
-        System.out.println("3.3."+arbolFinal.getLeft().getRight().getLeft().getRootContent());
-        System.out.println("3.4."+arbolFinal.getLeft().getRight().getRight().getRootContent());
-        System.out.println("3.5."+arbolFinal.getRight().getLeft().getLeft().getRootContent());
-        System.out.println("3.6."+arbolFinal.getRight().getLeft().getRight().getRootContent());
-        System.out.println("3.7."+arbolFinal.getRight().getRight().getLeft().getRootContent());
-        System.out.println("3.6."+arbolFinal.getRight().getRight().getRight().getRootContent());*/
+        //arbol preguntas con respuestas enlazadas
+        BinaryTree<String> arbolFinal=enlazarRespuestas(arbolPreguntas,respuestas);               
         
-        Map<Integer,ArrayList<String>> tabla = arbolPorNivel(arbolPreguntas,orden,respuestas);
-        System.out.println("Nivel 0: "+tabla.get(0));
-        System.out.println("Nivel 1: "+tabla.get(1));
-        System.out.println("Nivel 2: "+tabla.get(2));
-        System.out.println("Nivel 3: "+tabla.get(3));
-        System.out.println("Nivel 4: "+tabla.get(4));
-       
-       
-       /* BinaryTree<String> arbol=new BinaryTree<>("¿Es este animal un mamífero?");
-        arbol.setLeft(new BinaryTree<>("¿Es este animal un carnívoro?"));
-        arbol.setRight(new BinaryTree<>("¿Es este animal un carnívoro?"));
-        arbol.getLeft().setLeft(new BinaryTree<>("¿Se para este animal sobre cuatro patas?"));
-        arbol.getLeft().setRight(new BinaryTree<>("¿Se para este animal sobre cuatro patas?"));
-        arbol.getRight().setLeft(new BinaryTree<>("¿Se para este animal sobre cuatro patas?"));
-        arbol.getRight().setRight(new BinaryTree<>("¿Se para este animal sobre cuatro patas?"));
-        //Map<Integer,LinkedList<String>> tabla = arbolPorNivel(arbol,orden);
         
-        arbol.getRight().getRight().setRight(new BinaryTree<>("Paloma"));
-        arbol.getRight().getRight().setLeft(new BinaryTree<>("Desconocido"));
-        arbol.getRight().getLeft().setRight(new BinaryTree<>("Lechuza"));
-        arbol.getLeft().getRight().setRight(new BinaryTree<>("Desconocido"));
-        arbol.getRight().getLeft().setLeft(new BinaryTree<>("Desconocido"));
-        arbol.getLeft().getRight().setLeft(new BinaryTree<>("Venado"));
-        arbol.getLeft().getLeft().setRight(new BinaryTree<>("Desconocido"));
-        arbol.getLeft().getLeft().setLeft(new BinaryTree<>("Oso"));
-        */
-        
-        /*System.out.println("Arbol que usaremos: ");
-        //LinkedList<String> respuestas=new LinkedList<>();
-        
-        respuestas.add("Oso");
-        respuestas.add("Desconocido");
-        respuestas.add("Venado");
-        respuestas.add("Desconocido");
-        respuestas.add("Desconocido");
-        respuestas.add("Lechuza");
-        respuestas.add("Desconocido");
-        respuestas.add("Paloma");
-        
-        //tabla.put(3, respuestas);
-
-        System.out.println("Nivel 0: "+tabla.get(0));
-        System.out.println("Nivel 1: "+tabla.get(1));
-        System.out.println("Nivel 2: "+tabla.get(2));
-        System.out.println("Nivel 3: "+tabla.get(3));
-        //System.out.println(tabla.get(2).size());
-        ///System.out.println(arbolPorNivel(arbol,orden));
-        System.out.println("");
-        System.out.println("/////////////////////////");*/
+        //INICIO DEL JUEGO
         System.out.println("Por favor piense en un animal");
-        arbolActual=arbolPreguntas;
+        arbolActual=arbolFinal;
         
         String resp1="";
-        //while(!resp1.equals("SI")||!resp1.equals("NO")){
         while(arbolActual.getRootContent()!=null){
             if(ArbolData.esPregunta(arbolActual.getRootContent())){
                 System.out.println("*"+arbolActual.getRootContent());
@@ -166,6 +74,18 @@ public class main {
                 break;
             }
         }
+        
+        //impresion del arbol
+        System.out.println("Presione enter para ver el arbol:");
+        sc.nextLine();
+        
+        System.out.println("////ARBOL EN USO POR NIVEL////");
+        Map<Integer,ArrayList<String>> tabla = arbolPorNivel(arbolPreguntas,orden,respuestas);
+        System.out.println("Nivel 0: "+tabla.get(0));
+        System.out.println("Nivel 1: "+tabla.get(1));
+        System.out.println("Nivel 2: "+tabla.get(2));
+        System.out.println("Nivel 3 (respuestas registradas): "+tabla.get(3));
+        
     }
     
 }

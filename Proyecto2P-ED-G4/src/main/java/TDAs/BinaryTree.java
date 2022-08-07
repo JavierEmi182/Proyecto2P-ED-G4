@@ -108,7 +108,7 @@ public class BinaryTree<E> {
     
     //METODOS AGREGADOS
     //devuelve las hojas desde el arbol o subarbol actual
-    public LinkedList<E> listaHojas(){
+    public LinkedList<E> listaHojas(){//REVISAR CONDICIONES
         LinkedList<E> hojas = new LinkedList<>();
         if(this.getRootContent()==null){
             //lista vacia

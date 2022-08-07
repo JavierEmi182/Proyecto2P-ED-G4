@@ -19,7 +19,6 @@ import java.util.ArrayList;
  * @author ERWIN AURIA
  */
 public class RespuestasData {
-    //Oso sí sí sí
     
     public static ArrayList<String>leerRespuestas(String ruta) throws IOException {
         ArrayList<String> respuestas = new ArrayList<>();

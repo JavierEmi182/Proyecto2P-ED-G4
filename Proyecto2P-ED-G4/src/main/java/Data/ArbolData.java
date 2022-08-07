@@ -38,7 +38,6 @@ public class ArbolData {
         
         for(String p:reverse){
             int i=(int)Math.pow(2, orden.indexOf(p));
-            //System.out.println(i);
             while(i>0){
                 q.offer(new BinaryTree<>(p));
                 i--;
@@ -50,14 +49,9 @@ public class ArbolData {
             //PARAR EN EL LA PRIMERA PREGUNTA (ULTIMA INVERTIDA)
             break;
         }
-        //System.out.println(q.peek().getRootContent());
         int nv = orden.size()-1;
         int cont = q.size()/2;
-        //q.clear();
-        //System.out.println(q.size());
-        //System.out.println(q.peek().getRootContent());
         while(q.size()>1){
-            //q.poll();
             //System.out.println("Entre while");
             if(cont!=0){
                 BinaryTree<String> left = q.poll();
